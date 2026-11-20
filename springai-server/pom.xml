@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.mdkj</groupId>
+        <artifactId>AISmartCustomerService</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>springai-server</artifactId>
+    <name>springai-server</name>
+
+    <dependencies>
+        <!-- Web / MVC / Jackson / Validation 基础 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- 阿里云百炼（DashScope）模型接入：Chat / Embedding / Image 三个 Model 自动装配 -->
+        <dependency>
+            <groupId>com.alibaba.cloud.ai</groupId>
+            <artifactId>spring-ai-alibaba-starter</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>springai-server</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>17</release>
+                    <encoding>UTF-8</encoding>
+                    <!-- 必须保留方法参数名：@Tool/@ToolParam 生成的 JSON Schema 依赖它，
+                         否则参数名会退化成 arg0/arg1，模型无法按名字填参 -->
+                    <parameters>true</parameters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
